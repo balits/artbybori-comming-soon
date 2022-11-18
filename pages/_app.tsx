@@ -1,16 +1,22 @@
 import "../styles/globals.css"
 import type { AppProps } from 'next/app'
-import { DefaultLayout } from "../src/layouts"
+import DefaultSeo from "../src/seo/DefaultSeo"
+import { motion } from "framer-motion"
 
-type MyLayout = React.FC | "nolayout"
-
-export default function App({ Component, pageProps }: AppProps) {
-  if ((Component as any).Layout === "nolayout") {
-    return <Component {...pageProps}></Component>
-  }
+export default function App({ Component, pageProps, router }: AppProps) {
   return (
-    <DefaultLayout>
+    <motion.div
+      key={router.route}
+      initial={{ y: -10, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: 10, opacity: 0 }}
+      transition={{
+        type: "tween",
+        delay: 0.4
+      }}
+    >
+      <DefaultSeo />
       <Component {...pageProps} />
-    </DefaultLayout>
+    </motion.div>
   )
 }

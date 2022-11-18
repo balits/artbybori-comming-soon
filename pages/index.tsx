@@ -1,6 +1,8 @@
 import { InferGetServerSidePropsType } from 'next'
 import Head from 'next/head'
 import Image from "next/legacy/image"
+import { DefaultLayout } from '../src/layouts'
+import HomepageSeo from '../src/seo/HomepageSeo'
 
 /*
 const SHOP_QUERY = `
@@ -23,16 +25,11 @@ export const getServerSideProps = async () => {
 * */
 const Home = () => {
   return (
-    <section className="w-full h-screen flex justify-center ">
-      <div className="grid grid-cols-2 grid-rows-1">
-        <div className="h-fit mt-[250px]">
-          <h1 className="w-fit text-7xl font-bold mb-6">Handmade ceramics.</h1>
-          <p className="text-2xl max-w-[500px] font-kameron">
-            All of our products are carefully had-crafted by ceramic artist, Bori Borbely. They fire at high temperatures so they are microwave and dishwasher safe.
-          </p>
-        </div>
-      </div>
-    </section>
+    <DefaultLayout>
+      <article>
+        <h1>Home</h1>
+      </article>
+    </DefaultLayout>
   )
 }
 export default Home

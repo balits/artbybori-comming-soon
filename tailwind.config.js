@@ -18,6 +18,11 @@ module.exports = {
         "cantata": ['Cantata One', 'serif'],
         "kameron": ['Kameron', 'serif'],
         //TODO Add fallback options for the fonts above (or is it done automatically, using font-sans for Hind, and so on?)
+      },
+      spacing: {
+        "header-base": "64px",
+        "header-md": "80px",
+        "header-xl": "96px",
       }
     },
   },

@@ -29,7 +29,10 @@ export const useDrawer = () => {
     onOpen
   } as DrawerObject
 }
-
+/**
+* This is a basic Context Provider for a DrawerObject.
+* It creates a default `DrawerObject` with `useDrawer`.
+* */
 export const DrawerProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const defaultValue = useDrawer()
   return (
@@ -39,10 +42,10 @@ export const DrawerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   )
 }
 
-/*
-* TODO
-* add directions, and children
-* implement reduced motion
+/**
+* Sidebar Componenet, which slides in from the left.
+* Currenty, I cant implement onw which slides from the right...
+* Naming should be refined better..
 * */
 export const NavDrawer: React.FC = () => {
   const { open, onClose } = useContext(NavDrawerContext)

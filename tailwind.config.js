@@ -23,6 +23,7 @@ module.exports = {
         "header-base": "64px",
         "header-md": "80px",
         "header-xl": "96px",
+        "wrapper-max": "1400px",
       }
     },
   },

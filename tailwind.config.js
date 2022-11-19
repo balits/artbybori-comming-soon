@@ -11,7 +11,10 @@ module.exports = {
         "darkGreen": "#273120",
         "beige": "#ebeae6",
         "offwhite": "#f5f5f5",
-        "darkGray": "#292524",
+        grey: {
+          "light": "#d9d9d9",
+          "dark": "#292524",
+        }
       },
       fontFamily: {
         "hind": ['Hind Siliguri', 'sans-serif'],

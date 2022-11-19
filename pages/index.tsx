@@ -29,10 +29,25 @@ const Home = () => {
       <article>
         <h1>Home</h1>
       </article>
+      <HomepageSlider />
     </DefaultLayout>
   )
 }
 export default Home
+
+const HomepageSlider: React.FC = () => {
+  return (
+    <article className='bg-blue-100 overflow-hidden'>
+      <div>
+        <h1 className='text-4xl font-hind font-bold tracking-wide text-primary'>In Need of Vases or Mugs?</h1>
+        <h2 className='text-5xl font-hind font-bold tracking-wide text-darkGray'>We've got you covered.</h2>
+      </div>
+      <section className='absolute bg-red-100 h-[800px] w-screen'>
+      </section>
+
+    </article>
+  )
+}
 
 const ImageWrapper = () => {
   return (

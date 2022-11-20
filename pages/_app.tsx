@@ -17,6 +17,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
     >
       <DefaultSeo />
       <Component {...pageProps} />
+
     </motion.div>
   )
 }

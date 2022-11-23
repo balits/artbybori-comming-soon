@@ -1,88 +1,145 @@
 import React, { useState, createContext, useContext } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Nav from "./Nav"
+import { CartContext } from "@shopify/hydrogen-react/dist/types/CartProvider"
 
+/**
+* These functions are optional, because you wouldnt need "openSidebar" from the context, if my Componenet only closes it.
+* Vice versa, the icons in the header only open the sidebar.
+* */
 interface SidebarObject {
   isOpen: boolean,
-  onClose: () => void
-  onOpen: () => void
+  closeSidebar?: () => void
+  openSidebar?: () => void
 }
+
+export const CartSidebarContext = createContext<SidebarObject>({
+  isOpen: false,
+  closeSidebar: () => { },
+  openSidebar: () => { }
+})
+
 
 export const NavSidebarContext = createContext<SidebarObject>({
   isOpen: false,
-  onClose: () => { },
-  onOpen: () => { }
+  closeSidebar: () => { },
+  openSidebar: () => { }
 })
 
 /**
 * This hook creates a default DrawerObject using `useState`.
 * Initialy, open is set to `false`
 * */
-const useSidebar = () => {
+function useSidebar(): SidebarObject {
   const [isOpen, setIsOpen] = useState(false)
-  const onClose = () => setIsOpen(false)
-  const onOpen = () => setIsOpen(true)
-
-  return {
-    isOpen,
-    onClose,
-    onOpen
-  } as SidebarObject
+  const closeSidebar = () => setIsOpen(false)
+  const openSidebar = () => setIsOpen(true)
+  return { isOpen, closeSidebar, openSidebar }
 }
 
 /**
-* This is a basic Context Provider for a DrawerObject.
-* It creates a default `DrawerObject` with `useDrawer`.
+* This is a basic Context Provider for a DrawerObject (I use it to create two providers).
+* It creates two `DrawerObject` with `useDrawer`, and assigns it to the NavSidebarContext CartSidebarContext
 * */
 export const SidebarProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const defaultValue = useSidebar()
+  const v1 = useSidebar()
+  const v2 = useSidebar()
 
   return (
-    <NavSidebarContext.Provider value={defaultValue}>
-      {children}
+    <NavSidebarContext.Provider value={v1}>
+      <CartSidebarContext.Provider value={v2}>
+        {children}
+      </CartSidebarContext.Provider>
     </NavSidebarContext.Provider>
   )
 }
 
 /**
-* Sidebar Componenet, which slides in from the left.
+* Sidebar Componenet, which builds on top of `AnimatedSidebar`
 * Currenty, I cant implement one which slides in from the right...
+* EDIT: I figured out how to animate the slide from the right!!
 * */
 export const NavSidebar: React.FC = () => {
-  const { isOpen, onClose } = useContext(NavSidebarContext)
+  const { isOpen, closeSidebar } = useContext(NavSidebarContext)
 
+  return (
+    <AnimatedSidebar
+      isOpen={isOpen}
+      closeSidebar={closeSidebar}
+      from="left"
+    >
+      <div className="flex items-center justify-between w-full h-16 md:h-20 xl:h-24 mb-8">
+        <p className="text-base md:text-xl lg:text-[24px] xl:text-[28px] font-cantata font-bold">ART BY BORI</p>
+        <button aria-label="Close navigation panel." onClick={closeSidebar}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 md:h-6 md:w-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <Nav flexDirection="col" />
+
+    </AnimatedSidebar>
+  )
+}
+
+export const CartSidebar: React.FC = () => {
+  const { isOpen, closeSidebar } = useContext(CartSidebarContext)
+  return (
+    <AnimatedSidebar
+      isOpen={isOpen}
+      closeSidebar={closeSidebar}
+      from="right"
+    >
+      <div className="flex items-center justify-between w-full h-16 md:h-20 xl:h-24 mb-8">
+        <button aria-label="Close navigation panel." onClick={closeSidebar}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 md:h-6 md:w-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <p className="text-base md:text-xl lg:text-[24px] xl:text-[28px] font-cantata font-bold">CART</p>
+      </div>
+
+    </AnimatedSidebar>
+  )
+}
+
+type SidebarProps = SidebarObject & {
+  from: "left" | "right",
+  children: React.ReactNode
+}
+
+const AnimatedSidebar: React.FC<SidebarProps> = ({
+  isOpen,
+  closeSidebar,
+  from,
+  children
+}) => {
+  const initialX = from === "left" ? -1000 : 1000
   return (
     <AnimatePresence>
       {isOpen &&
-        <>
-          <motion.div className="w-full h-full absolute z-[49] bg-black/40 top-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-          />
-          <motion.div className="z-50 bg-offwhite absolute inset-0 h-full w-72 pr-4 pl-6  md:pl-8 mt:pt-8 flex items-start justify-start flex-col gap-y-20"
-            initial={{ x: -1000 }}
+        <motion.div className="absolute top-0 right-0 w-full h-full bg-black/50 z-[49] overflow-hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 0.2,
+          }}
+          onClick={closeSidebar}
+        >
+          <motion.div className={`absolute h-full w-sidebar-phone md:w-sidebar-tablet xl:w-sidebar-desktop  bg-offwhite top-0 ${from === "right" ? "right-0" : "left-0"}  z-50 px-2`}
+            initial={{ x: initialX }}
             animate={{ x: 0 }}
-            exit={{ x: -1000 }}
+            exit={{ x: initialX }}
             transition={{
               type: "tween",
               duration: 0.4,
-              delay: 0.2
             }}
           >
-            <div className="flex items-center justify-between w-full h-16 md:h-20 xl:h-24">
-              <p className="text-base md:text-xl lg:text-[24px] xl:text-[28px] font-cantata font-bold">ART BY BORI</p>
-              <button aria-label="Close navigation panel." onClick={onClose}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 md:h-6 md:w-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <Nav flexDirection="col" />
+            {children}
           </motion.div>
-        </>
+        </motion.div>
       }
-    </AnimatePresence >
+    </AnimatePresence>
   )
 }

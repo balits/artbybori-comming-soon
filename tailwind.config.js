@@ -27,6 +27,10 @@ module.exports = {
         "header-md": "80px",
         "header-xl": "96px",
         "wrapper-max": "1400px",
+
+        "sidebar-phone": "280px",
+        "sidebar-tablet": "380px",
+        "sidebar-desktop": "520px",
       }
     },
   },

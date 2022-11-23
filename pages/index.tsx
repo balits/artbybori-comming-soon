@@ -34,15 +34,5 @@ const SHOP_QUERY = `
       description
   }
 }
-`
-export const getServerSideProps = async () => {
-  const { data } = await storefront({ query: SHOP_QUERY })
-  return {
-    props: {
-      data: data
-    }
-  }
-}
-
 * */
 

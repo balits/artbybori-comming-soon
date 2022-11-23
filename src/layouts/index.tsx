@@ -1,4 +1,4 @@
-import { DrawerProvider, NavDrawer } from "../components/drawer"
+import { SidebarProvider, NavSidebar, CartSidebar } from "../components/sidebar"
 import Header from "../components/Header"
 import Link from "next/link"
 
@@ -7,14 +7,17 @@ type LayoutChildren = { children: React.ReactNode }
 export const DefaultLayout: React.FC<LayoutChildren> = ({ children }) => {
   return (
     <div className=" h-screen w-screen bg-offwhite flex flex-col items-center justify-start">
-      <DrawerProvider>
+      <SidebarProvider>
         <Header />
-        <NavDrawer />
-      </DrawerProvider>
-      {/* tailwind doesnt allow a custom spacing utility for max-w-<utility>, but does for max-h-<utility> ?? */}
-      <main className="border-black/10 border-2 px-2 w-full max-w-[1400px] h-full mt-header-base md:mt-header-md xl:mt-header-xl">
+        <NavSidebar />
+        <CartSidebar />
+      </SidebarProvider>
+
+      <main className="w-full max-w-[1400px] h-full  mt-header-base md:mt-header-md xl:mt-header-xl">
+        {/* tailwind doesnt allow a custom spacing utility for max-w-<utility>, but does for max-h-<utility> ?? */}
         {children}
       </main>
+
     </div>
   )
 }
@@ -27,7 +30,7 @@ export const NoHeaderLayout: React.FC<LayoutChildren> = ({ children }) => {
           <p className="text-[16px] md:text-xl lg:text-[24px] xl:text-[28px] lg:pl-4 font-cantata font-bold">ART BY BORI</p>
         </Link>
       </header>
-      <main className="px-3 xl:px-0 xl:max-w-[1400px] pt-header-base md:pt-header-md xl:pt-header-xl">
+      <main className="w-full xl:px-0 xl:max-w-[1400px] pt-header-base md:pt-header-md xl:pt-header-xl">
         {children}
       </main>
     </div>

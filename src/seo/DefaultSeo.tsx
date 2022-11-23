@@ -1,5 +1,5 @@
 /* TYPES OF SEO PROPS 
-* to learn more: "https://shopify.dev/api/hydrogen/components/primitive/seo"
+* learn more: "https://shopify.dev/api/hydrogen/components/primitive/seo"
 * {
 *   title: string;
 *   description: string;
@@ -11,6 +11,27 @@
 import Head from "next/head"
 
 
+/**
+* `SEO` component for every page. It is rendered by `DefaultLayout`
+* It contains basic meta tags and a default title tag for seo purposes.
+* Additional SEO should be used for every page though, for page-specific tags.
+* 
+* Usage:
+*   <DefaultLayout>
+*     <DefaultSeo />
+*     { App renders here! }
+*   </DefaultLayout>
+*
+* NOTE: You should use page-specific SEO components for each page, for example:
+*
+*  <DefaultLayout>
+*     `<DefaultSeo />`
+*       <ProductsPage>
+*         `<ProductsSeo />`
+*         { Insert content here! }
+*       </ProductsPage>
+*   </DefaultLayout>
+* */
 export default function DefaultSeo() {
   return (
     <Head>

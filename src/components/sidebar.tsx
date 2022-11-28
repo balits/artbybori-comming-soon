@@ -1,7 +1,6 @@
 import React, { useState, createContext, useContext } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Nav from "./Nav"
-import { CartContext } from "@shopify/hydrogen-react/dist/types/CartProvider"
 
 /**
 * These functions are optional, because you wouldnt need "openSidebar" from the context, if my Componenet only closes it.
@@ -90,7 +89,7 @@ export const CartSidebar: React.FC = () => {
       closeSidebar={closeSidebar}
       from="right"
     >
-      <div className="flex items-center justify-between w-full h-16 md:h-20 xl:h-24 mb-8">
+      <div className="static flex items-center justify-between w-full h-16 md:h-20 xl:h-24 mb-8">
         <button aria-label="Close navigation panel." onClick={closeSidebar}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 md:h-6 md:w-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -118,7 +117,7 @@ const AnimatedSidebar: React.FC<SidebarProps> = ({
   return (
     <AnimatePresence>
       {isOpen &&
-        <motion.div className="absolute top-0 right-0 w-full h-full bg-black/50 z-[49] overflow-hidden"
+        <motion.div className="fixed top-0 right-0 w-screen min-h-screen bg-black/50 z-[49] "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -127,7 +126,7 @@ const AnimatedSidebar: React.FC<SidebarProps> = ({
           }}
           onClick={closeSidebar}
         >
-          <motion.div className={`absolute h-full w-sidebar-phone md:w-sidebar-tablet xl:w-sidebar-desktop  bg-offwhite top-0 ${from === "right" ? "right-0" : "left-0"}  z-50 px-2`}
+          <motion.div className={`fixed  h-full w-sidebar-phone md:w-sidebar-tablet xl:w-sidebar-desktop  bg-offwhite top-0 ${from === "right" ? "right-0" : "left-0"}  z-50 px-2`}
             initial={{ x: initialX }}
             animate={{ x: 0 }}
             exit={{ x: initialX }}

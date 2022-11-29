@@ -1,4 +1,5 @@
 import { createStorefrontClient } from "@shopify/hydrogen-react";
+import type { Product } from "@shopify/hydrogen-react/storefront-api-types";
 
 const client = createStorefrontClient({
   publicStorefrontToken: '3b580e70970c4528da70c98e097c2fa0',
@@ -18,10 +19,16 @@ export const storefront = async ({ query = '', variables = {}, }) => {
     });
 
     const result = await response.json();
-    console.log(result)
     return result
   }
   catch (err) {
     console.warn("utils/shopify.tsx", err)
   }
+}
+export function extractProducts(data: any): Array<Partial<Product>> {
+  let p: Partial<Product>[] = []
+  for (let nodeObj of data.products.edges) {
+    p.push(nodeObj.node)
+  }
+  return p
 }

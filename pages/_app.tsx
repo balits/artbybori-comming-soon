@@ -1,10 +1,26 @@
 import "../styles/globals.css"
 import type { AppProps } from 'next/app'
 import DefaultSeo from "../src/seo/DefaultSeo"
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 import { CartProvider } from "@shopify/hydrogen-react"
 import { SidebarProvider } from "../src/components/sidebar"
+
 export default function App({ Component, pageProps, router }: AppProps) {
+  const reduced = useReducedMotion()
+
+  if (reduced) {
+    return (
+      <CartProvider>
+        <SidebarProvider>
+
+          <Component {...pageProps} />
+
+        </SidebarProvider>
+      </CartProvider>
+
+    )
+  }
+
   return (
     <motion.div
       key={router.route}

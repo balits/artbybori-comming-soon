@@ -1,10 +1,9 @@
-import { InferGetServerSidePropsType } from 'next'
-import Head from 'next/head'
+import { NextPage } from "next"
 import Image from "next/legacy/image"
 import { DefaultLayout } from '../src/layouts'
 import HomepageSeo from '../src/seo/HomepageSeo'
 
-const Home = () => {
+const Home: NextPage = () => {
   return (
     <DefaultLayout>
 

@@ -1,6 +1,7 @@
+import { NextPage } from "next"
 import { DefaultLayout } from "../../src/layouts"
 
-const ComingSoon = () => {
+const ComingSoon: NextPage = () => {
   return (
     <DefaultLayout>
       <article>

@@ -1,41 +1,55 @@
 import { DefaultLayout } from "../../src/layouts"
-import { ProductGrid } from "../../src/components/products"
-import { storefront } from "../../src/utils/shopify"
-import { GetServerSideProps, InferGetServerSidePropsType } from "next"
+import Link from "next/link"
+import { extractProducts, storefront } from "../../src/utils/shopify"
+import ProductsPageSeo from "../../src/seo/ProductsPageSeo"
 import type { Product } from "@shopify/hydrogen-react/storefront-api-types"
+import type { GetStaticProps, NextPage } from "next"
 
-export const getServerSideProps = async () => {
+export type ProductsPageProps = {
+  products: Partial<Product>[]
+};
+
+export const getStaticProps: GetStaticProps = async () => {
   const { data } = await storefront({ query: PRODUCTS_QUERY })
+  const products = extractProducts(data)
   return {
     props: {
-      data: data
-    }
+      products: products
+    } as ProductsPageProps
   }
 }
 
-
-const Products: React.FC = ({ data }: InferGetServerSidePropsType<GetServerSideProps>) => {
-  const products = data.products
-  console.log(products)
+const ProductsPage: NextPage<ProductsPageProps> = ({ products }) => {
   return (
     <DefaultLayout>
-      <article>
-        <ProductGrid products={products.edges} />
+      <ProductsPageSeo />
+      <article className="grid gap-2 grid-flow-row ">
+        <Link href="/products/asd">Invalid Link</Link>
+        {
+          products.map(p => (
+            <div key={p.id} className="w-40 h-40 bg-sky-300">
+              <Link href={`/products/${p.handle}`}>
+                {p.handle}
+              </Link>
+            </div>
+          ))
+        }
       </article>
     </DefaultLayout>
   )
 }
-export default Products
+export default ProductsPage
 
-const PRODUCTS_QUERY = `
+export const PRODUCTS_QUERY = `
 {
   products(first: 20) {
     edges {
       node {
         title,
         id,
+        handle,
         featuredImage {
-          originalSrc,
+          transformedSrc,
           altText
         }
       }

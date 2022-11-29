@@ -32,11 +32,14 @@ export async function getStaticPaths() {
     fallback: false,
   }
   // fallback: false => every non valid urls redirect to 404
+  //
   // fallback: true  => paths that doenst get generated during build time,
-  //  will run GetStaticProps on request. While it runs, you will see a loading state, then after its generated, every other request to that url will be already generated 
+  // will run GetStaticProps on request. While it runs, you will see a loading state,
+  // then after its generated, every other request to that url will be already pre-rendered 
+  //  
   // fallback: 'blocking' => paths that doenst get generated during build time,
-  //  will use SSR. There is no loading state, only a waiting period between request, and page load (:().
-  //  But if SSR is done, the path will be added to the pre-rendered paths
+  // will use SSR. There is no loading state, only a waiting period between request, and page load 
+  // But if SSR is done, the path will be added to the pre-rendered paths 
 }
 
 function getCurrentProduct(handle: string, p: Partial<Product>[]): Partial<Product> {

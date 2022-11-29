@@ -1,7 +1,7 @@
-import Link from "next/link"
 import { useContext } from "react"
 import { CartSidebarContext, NavSidebarContext } from "./sidebar"
 import Nav from "./Nav"
+import Logo from "./Logo"
 
 const Header: React.FC = () => {
   const { openSidebar: openNavSidebar } = useContext(NavSidebarContext)
@@ -15,10 +15,7 @@ const Header: React.FC = () => {
         </svg>
       </button>
 
-      <Link href="/">
-        <p className="text-[16px] md:text-xl lg:text-[22px] xl:text-[26px]  font-cantata font-bold">ART BY BORI</p>
-      </Link>
-
+      <Logo />
       <Nav flexDirection="row" />
 
       <button onClick={openCartSidebar} className="p-2 md:p-3 lg:p-4" aria-label="Open cart panel from the right side.">

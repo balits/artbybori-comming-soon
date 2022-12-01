@@ -1,11 +1,12 @@
 import { NextPage } from "next"
 import Image from "next/legacy/image"
 import { DefaultLayout } from '../src/layouts'
-import HomepageSeo from '../src/seo/HomepageSeo'
+import Seo from "../src/Seo"
 
 const Home: NextPage = () => {
   return (
     <DefaultLayout>
+      <Seo title="Home" />
 
     </DefaultLayout>
   )

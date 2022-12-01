@@ -1,6 +1,6 @@
 import "../styles/globals.css"
 import type { AppProps } from 'next/app'
-import DefaultSeo from "../src/seo/DefaultSeo"
+import Seo from "../src/Seo"
 import { motion, useReducedMotion } from "framer-motion"
 import { CartProvider } from "@shopify/hydrogen-react"
 import { SidebarProvider } from "../src/components/sidebar"
@@ -32,7 +32,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
         delay: 0.4
       }}
     >
-      <DefaultSeo />
       <CartProvider>
 
         <SidebarProvider>

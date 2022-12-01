@@ -1,9 +1,11 @@
 import { DefaultLayout } from "../../src/layouts"
 import Link from "next/link"
 import { extractProducts, storefront } from "../../src/utils/shopify"
-import ProductsPageSeo from "../../src/seo/ProductsPageSeo"
-import type { Product } from "@shopify/hydrogen-react/storefront-api-types"
+import type { CartLineInput, Product } from "@shopify/hydrogen-react/storefront-api-types"
 import type { GetStaticProps, NextPage } from "next"
+import PRODUCTS_QUERY from "../../src/gql/productsQuery"
+import { useCart } from "@shopify/hydrogen-react"
+import Seo from "../../src/Seo"
 
 export type ProductsPageProps = {
   products: Partial<Product>[]
@@ -20,16 +22,24 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const ProductsPage: NextPage<ProductsPageProps> = ({ products }) => {
+  const cart = useCart()
+
+  const addSingleToCart = (cli: CartLineInput) => {
+    cart.linesAdd([cli])
+    console.log("cart lines:", cart.lines)
+  }
+
   return (
     <DefaultLayout>
-      <ProductsPageSeo />
+      <Seo title="Products" />
       <article className="grid gap-2 grid-flow-row ">
         <Link href="/products/asd">Invalid Link</Link>
         {
           products.map(p => (
-            <div key={p.id} className="w-40 h-40 bg-sky-300">
+            <div key={p.id} className="w-40 h-40 bg-sky-300 cursor-pointer"
+            >
               <Link href={`/products/${p.handle}`}>
-                {p.handle}
+                Add {p.title} to the cart
               </Link>
             </div>
           ))
@@ -39,21 +49,3 @@ const ProductsPage: NextPage<ProductsPageProps> = ({ products }) => {
   )
 }
 export default ProductsPage
-
-export const PRODUCTS_QUERY = `
-{
-  products(first: 20) {
-    edges {
-      node {
-        title,
-        id,
-        handle,
-        featuredImage {
-          transformedSrc,
-          altText
-        }
-      }
-    }
-  }
-}
-`

@@ -1,11 +1,13 @@
 import { DefaultLayout } from "../../src/layouts"
 import { extractProducts, storefront } from "../../src/utils/shopify"
-import { ProductsPageProps, PRODUCTS_QUERY } from "./index"
+import { ProductsPageProps } from "./index"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import { NextPage } from "next"
 import { Product } from "@shopify/hydrogen-react/storefront-api-types"
-import SingleProductPageSeo from "../../src/seo/SingleProductPageSeo"
+import PRODUCTS_QUERY from "../../src/gql/productsQuery"
+import Seo from "../../src/Seo"
+import { useMoney } from "@shopify/hydrogen-react"
 
 
 export async function getStaticProps() {
@@ -58,29 +60,27 @@ const SingleProductPage: NextPage<ProductsPageProps> = ({
   products
 }) => {
   //generate related products array
-  //breadcrumbs (mayeb useRouter)
-  const router = useRouter()
-  console.log(router)
+  const { query } = useRouter()
 
   //while we only use a single [handle] dynamic page
   //I think query.handle will only be of type string, sooo....
   //@ts-ignore
-  const currentProduct = getCurrentProduct(router.query.handle, products)
+  const currentProduct = getCurrentProduct(query.handle, products)
 
   return (
     <DefaultLayout>
-      <SingleProductPageSeo productTitle={currentProduct.title!} />
-      <article>
+      {/* Maybe breadcrumbs? */}
+
+      <Seo title={currentProduct.title!} />
+      <article className="">
         <Link href="/products">Back to products</Link>
-        <br />
-        {JSON.stringify(currentProduct)}
-        <br />
-        <h1>{currentProduct.title}</h1>
-        <img src={currentProduct.featuredImage?.transformedSrc} />
-        {/* Maybe breadcrumbs? */}
-        {/* Image grid  */}
-        {/* Product title+description+paybutton  */}
-        {/* Related Products */}
+        <h1 className="mt-12 mb-2 font-bold font-hind text-2xl">{currentProduct.title}</h1>
+        <p className="mb-12 font-kameron text-lg">{currentProduct.description}</p>
+        <button className="divide-x-2 divide-offwhite px-6 py-2 bg-grey-dark text-offwhite rounded-md text-xl font-semibold tracking-wider"
+        >
+          <span className="pr-2">Purchase</span>
+          <span className="pl-2">{currentProduct.priceRange?.minVariantPrice.amount}</span>
+        </button>
       </article>
     </DefaultLayout>
   )

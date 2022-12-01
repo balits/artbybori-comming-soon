@@ -1,7 +1,6 @@
 import { NavSidebar, CartSidebar, NavSidebarContext, CartSidebarContext } from "../components/sidebar"
 import Header from "../components/Header"
 import { useContext, useEffect } from "react"
-import DefaultSeo from "../seo/DefaultSeo"
 
 type LayoutChildren = { children: React.ReactNode }
 
@@ -20,12 +19,11 @@ export const DefaultLayout: React.FC<LayoutChildren> = ({ children }) => {
   }, [navIsOpen, cartIsOpen])
 
   return (
-    <div className="max-w-screen bg-offwhite flex flex-col items-center justify-start">
+    <div className="max-w-screen overflow-hidden bg-offwhite flex flex-col items-center justify-start">
       <Header />
       <NavSidebar />
       <CartSidebar />
 
-      <DefaultSeo />
       <main className={`w-full max-w-[1400px] px-3  xl:p-0  mt-header-base md:mt-header-md xl:mt-header-xl`}>
         {/* tailwind doesnt allow a custom spacing utility for max-w-<utility>, but does for max-h-<utility> ?? */}
         {children}

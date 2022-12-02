@@ -10,15 +10,29 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-/*
-::-webkit-scrollbar {
-  width: 0.5rem;
+@font-face {
+  font-family: 'Cantata One';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''), url('/fonts/CantataOne-Regular.ttf') format('truetype');
 }
-::-webkit-scrollbar-track {
-  background-color: transparent;
+
+@font-face {
+  font-family: 'Hind Siliguri';
+  font-weight: 400;
+  font-style: normal;
+  src: local(''), url('/fonts/HindSiliguri-Light.ttf') format('truetype'),
+    url('/fonts/HindSiliguri-Light.ttf') format('truetype'),
+    url('/fonts/HindSiliguri-Medium.ttf') format('truetype'),
+    url('/fonts/HindSiliguri-Regular.ttf') format('truetype'),
+    url('/fonts/HindSiliguri-Semibold.ttf') format('truetype'),
+    url('/fonts/HindSiliguri-Bold.ttf') format('truetype');
 }
-::-webkit-scrollbar-thumb {
-  background-color: #292524;
-  border-radius: 99999px;
+
+@font-face {
+  font-family: 'Kameron';
+  font-weight: 400;
+  font-style: normal;
+  src: local(''), url('/fonts/Kameron-Regular.ttf') format('truetype'),
+    url('/fonts/Kameron-Bold.ttf') format('truetype');
 }
-* */

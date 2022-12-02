@@ -1,12 +1,10 @@
 import { NextPage } from "next"
 import Image from "next/legacy/image"
-import { DefaultLayout } from '../src/layouts'
+//import { DefaultLayout } from '../src/layouts'
 
 const Home: NextPage = () => {
   return (
-    <DefaultLayout>
-
-    </DefaultLayout>
+    <h1>Coming soon :D</h1>
   )
 }
 export default Home

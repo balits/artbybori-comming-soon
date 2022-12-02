@@ -1,7 +1,6 @@
 import { NextPage } from "next"
 import Image from "next/legacy/image"
 import { DefaultLayout } from '../src/layouts'
-import HomepageSeo from '../src/seo/HomepageSeo'
 
 const Home: NextPage = () => {
   return (
@@ -20,18 +19,8 @@ const ImageWrapper = () => {
         objectFit="cover"
         className="rounded-b-sm rounded-t-full "
         priority={true}
+        alt="s"
       />
     </div>
   )
 }
-
-/*
-const SHOP_QUERY = `
-  query ShopInfo {
-    shop {
-      name
-      description
-  }
-}
-* */
-

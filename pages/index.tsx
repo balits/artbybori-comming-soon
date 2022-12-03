@@ -140,7 +140,6 @@ const Home: NextPage = ({ }) => {
             src="/coming-soon-bg.jpg"
             alt="A mug from Art by Bori"
             priority
-            fill
           />
         </section>
       </main>

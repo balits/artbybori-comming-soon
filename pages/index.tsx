@@ -16,7 +16,7 @@ const Home: NextPage = ({ }) => {
         defaultTitle="Art by Bori"
         titleTemplate="%s | Art by Bori"
         description="The Offical website for Art by Bori is under construction, and will be live in a couple of months"
-        themeColor="#fe670c"
+        themeColor="#828770"
         canonical="https://artbybori.com"
         openGraph={{
           type: 'website',
@@ -100,7 +100,7 @@ const Home: NextPage = ({ }) => {
           */
         ]}
       />
-      <main className="overflow-hidden w-screen h-screen bg-offwhite text-decorative-darkGreen grid grid-rows-2 grid-cols-1 lg:grid-cols-2 lg:grid-rows-1">
+      <main className="overflow-hidden w-screen max-h-screen bg-offwhite text-decorative-darkGreen grid grid-rows-2 grid-cols-1 lg:grid-cols-2 lg:grid-rows-1">
         <section className="relative w-full h-full  flex items-center justify-center ">
           <div className="absolute -top-8 lg:-top-6 text-5xl md:text-6xl lg:text-8xl xl:text-[108px] flex items-center justify-center  w-full h-20 font-cantata ">
             <h1 className="uppercase">

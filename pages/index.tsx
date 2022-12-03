@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import Image from "next/legacy/image"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import Head from "next/head"
 import { NextSeo } from "next-seo"
@@ -138,10 +138,9 @@ const Home: NextPage = ({ }) => {
         <section className="w-full h-full relative">
           <Image
             src="/coming-soon-bg.jpg"
-            layout="fill"
-            objectFit="cover"
-            priority={true}
             alt="A mug from Art by Bori"
+            priority
+            fill
           />
         </section>
       </main>

@@ -2,6 +2,7 @@ import { NextPage } from "next"
 import Image from "next/legacy/image"
 import { motion } from "framer-motion"
 import Head from "next/head"
+import { NextSeo } from "next-seo"
 
 export async function getStaticProps() {
   return {
@@ -31,9 +32,97 @@ const ComingSoonSeo = () => {
 
 const Home: NextPage = ({ }) => {
   return (
-    <main>
-      <ComingSoonSeo />
-      <article className="w-screen h-screen grid grid-cols-2">
+    <>
+      <NextSeo
+        title="Coming Soon"
+        defaultTitle="Art by Bori"
+        titleTemplate="%s | Art by Bori"
+        description="The Offical website for Art by Bori is under construction, and will be live in a couple of months"
+        themeColor="#fe670c"
+        canonical="https://artbybori.com"
+        openGraph={{
+          type: 'website',
+          locale: 'en_IE',
+          url: 'https://www.artbybori.com',
+          title: 'Art by Bori',
+          description: 'The Offical website for Art by Bori is under construction, and will be live in a couple of months',
+          article: {
+            tags: [
+              "coming soon",
+              "under construction",
+              "website",
+              "webshop",
+              "ceramics",
+              "handmade",
+              "mugs",
+              "mug",
+              "vase",
+              "vases"
+            ],
+            section: "Handmade Ceramics"
+          },
+          images: [
+            {
+              url: 'https://artbybori.com/coming-soon-bg.jpg',
+              width: 637,
+              height: 956,
+              alt: "The bottom of a Mug from Art by Bori",
+              type: 'image/jpeg',
+            },
+          ],
+          siteName: 'Art by Bori',
+        }}
+        twitter={{
+          handle: '@handle',
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
+        facebook={{
+          appId: "" // visit next-seo
+        }}
+        robotsProps={{
+          nosnippet: true,
+          notranslate: true,
+          noimageindex: true,
+          noarchive: true,
+          maxSnippet: -1,
+          maxImagePreview: 'none',
+          maxVideoPreview: -1,
+        }}
+        additionalMetaTags={[{
+          property: 'applicatoin-name',
+          content: "Art by Bori"
+        }, {
+          property: "dc:creator",
+          content: "Borbély Bori"
+        }
+        ]}
+        additionalLinkTags={[
+          /*ű
+          {
+            rel: 'icon',
+            href: 'url for icon'
+          },
+          {
+            rel: 'apple-touch-icon',
+            href: 'https://www.test.ie/touch-icon-ipad.jpg',
+            sizes: '76x76'
+          },
+          {
+            rel: 'manifest',
+            href: '/manifest.json'
+          },
+          {
+            rel: 'preload',
+            href: 'https://www.test.ie/font/sample-font.woof2',
+            as: 'font',
+            type: 'font/woff2',
+            crossOrigin: 'anonymous'
+          }
+          */
+        ]}
+      />
+      <main className="w-screen h-screen grid grid-cols-2">
         <section className="w-full h-full bg-offwhite text-myOrange ">
           <div className="h-fit pl-20 pt-60">
             <motion.h1 className="text-7xl mb-40 w-max font-cantata"
@@ -55,8 +144,8 @@ const Home: NextPage = ({ }) => {
             alt="A mug from Art by Bori"
           />
         </section>
-      </article>
-    </main>
+      </main>
+    </>
   )
 }
 export default Home

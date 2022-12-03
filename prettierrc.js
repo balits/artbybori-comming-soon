@@ -1,7 +1,5 @@
-const opts = {
+module.exports = {
   singleQuote: true,
   bracketSpacing: true,
   trailingComa: true
 }
-
-module.exports = opts

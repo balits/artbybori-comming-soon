@@ -15,7 +15,10 @@ module.exports = {
           "light": "#d9d9d9",
           "dark": "#292524",
         },
-        "myOrange": "#fe670c"
+        decorative: {
+          "myOrange": "#fe670c",
+          "darkGreen": "#426148"
+        }
       },
       fontFamily: {
         "kameron": ['Kameron'],
@@ -35,7 +38,9 @@ module.exports = {
       }
     },
     gridTemplateRows: {
-      '12': 'repeat(12, minmax(0,1fr))'
+      '1': 'repeat(1, minmax(0,1fr))',
+      '2': 'repeat(2, minmax(0,1fr))',
+      '12': 'repeat(12, minmax(0,1fr))',
     },
     gridRow: {
       'span-8': 'span 8 / span 8',

@@ -1,33 +1,11 @@
 import { NextPage } from "next"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import Head from "next/head"
 import { NextSeo } from "next-seo"
+import Image from "next/legacy/image"
 
 export async function getStaticProps() {
   return {
     props: {}
   }
-}
-
-const ComingSoonSeo = () => {
-  const t = "Art by Bori"
-  const desc = "The Art by Bori website is under construction, and will be live in a couple of months"
-  return (
-    <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta charSet="utf8" />
-      <meta name="description" content={desc} />
-      <title>{t}</title>
-
-      {/*Open Graph*/}
-      <meta property="og:title" content={t} key="ogtitle" />
-      <meta property="og:description" content={desc} key="ogdesc" />
-      <meta property="og:url" content="www.artbybori.com" key="ogtitle" />
-
-      {/*Twitter*/}
-    </Head>
-  )
 }
 
 const Home: NextPage = ({ }) => {
@@ -63,7 +41,7 @@ const Home: NextPage = ({ }) => {
           },
           images: [
             {
-              url: 'https://artbybori.com/coming-soon-bg.jpg',
+              url: 'https://artbybori.com/images/coming-soon-bg.jpg',
               width: 637,
               height: 956,
               alt: "The bottom of a Mug from Art by Bori",
@@ -122,23 +100,42 @@ const Home: NextPage = ({ }) => {
           */
         ]}
       />
-      <main className="w-screen h-screen grid grid-cols-2">
-        <section className="w-full h-full bg-offwhite text-myOrange ">
-          <div className="h-fit pl-20 pt-60">
-            <motion.h1 className="text-7xl mb-40 w-max font-cantata"
-            >
-              Hi there!
-            </motion.h1>
-            <p className="flex flex-col text-2xl text-myOrange font-kameron leadin-4 w-[355px]">
-              We are currently working on our new webshop! <br />
+      <main className="overflow-hidden w-screen h-screen bg-offwhite text-decorative-darkGreen grid grid-rows-2 grid-cols-1 lg:grid-cols-2 lg:grid-rows-1">
+        <section className="relative w-full h-full  flex items-center justify-center ">
+          <div className="absolute -top-8 lg:-top-6 text-5xl md:text-6xl lg:text-8xl xl:text-[108px] flex items-center justify-center  w-full h-20 font-cantata ">
+            <h1 className="uppercase">
+              coming&nbsp;soon
+            </h1>
+          </div>
+
+          <p className="text-center font-kameron mb-16 lg:mb-0 leading-5 w-5/6 text-[16px] md:text-lg xl:text-xl  lg:w-4/6 mx-auto flex flex-col  gap-y-6 lg:gap-y-8">
+            <span>
+              We are currently working on our new webshop!
+            </span>
+            <span>
               In the meantime you can visit our social media platforms for more information and behind the scenes content.
-            </p>
+            </span>
+          </p>
+
+          <div className="absolute bottom-0 mb-14 lg:mb-24 w-full flex justify-center items-center gap-x-10 lg:gap-x-10">
+            <a href="https://www.facebook.com/artbybori" target={"_blank"} rel="noreferrer" className="relative w-4 h-4 lg:w-6 lg:h-6 inline-flex py-1 px-2 transition-transform delay-100 duration-200 hover:-translate-y-1 cursor-pointer" >
+              <Image src="/icons/facebook-f.svg" alt="Link to the Art by Bori Facebook page" objectFit="fill" layout="fill" />
+            </a>
+            <a href="https://www.instagram.com/artbybori" target={"_blank"} rel="noreferrer" className="relative w-5 h-5 lg:w-6 lg:h-6 inline-flex p-2 transition-transform delay-100 duration-200 hover:-translate-y-1 cursor-pointer">
+              <Image src="/icons/instagram.svg" alt="Link to the Art by Bori Instagram page" objectFit="fill" layout="fill" />
+            </a>
+            <a href="mailto:artbybori@gmail.com" target={"_blank"} rel="noreferrer" className="relative  w-5 h-5 lg:w-6 lg:h-6 inline-flex p-2 transition-transform delay-100 duration-200 hover:-translate-y-1 cursor-pointer">
+              <Image src="/icons/email.svg" alt="Link to the Art by Bori Instagram page" objectFit="fill" layout="fill" />
+            </a>
           </div>
         </section>
-        <section className="w-full h-full relative">
+
+        <section className="relative overflow-hidden mx-8 rounded-t-full lg:w-full lg:h-full  lg:rounded-none">
           <Image
-            src="/coming-soon-bg.jpg"
+            src="/images/coming-soon-bg.jpg"
             alt="A mug from Art by Bori"
+            objectFit="cover"
+            layout="fill"
             priority
           />
         </section>

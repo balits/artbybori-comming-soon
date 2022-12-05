@@ -6,7 +6,6 @@ import Link from "next/link"
 import { NextPage } from "next"
 import { Product } from "@shopify/hydrogen-react/storefront-api-types"
 import PRODUCTS_QUERY from "../../src/gql/productsQuery"
-import Seo from "../../src/Seo"
 import { useMoney } from "@shopify/hydrogen-react"
 
 
@@ -70,8 +69,6 @@ const SingleProductPage: NextPage<ProductsPageProps> = ({
   return (
     <DefaultLayout>
       {/* Maybe breadcrumbs? */}
-
-      <Seo title={currentProduct.title!} />
       <article className="">
         <Link href="/products">Back to products</Link>
         <h1 className="mt-12 mb-2 font-bold font-hind text-2xl">{currentProduct.title}</h1>

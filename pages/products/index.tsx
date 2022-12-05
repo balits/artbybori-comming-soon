@@ -5,7 +5,6 @@ import type { CartLineInput, Product } from "@shopify/hydrogen-react/storefront-
 import type { GetStaticProps, NextPage } from "next"
 import PRODUCTS_QUERY from "../../src/gql/productsQuery"
 import { useCart } from "@shopify/hydrogen-react"
-import Seo from "../../src/Seo"
 
 export type ProductsPageProps = {
   products: Partial<Product>[]
@@ -31,7 +30,6 @@ const ProductsPage: NextPage<ProductsPageProps> = ({ products }) => {
 
   return (
     <DefaultLayout>
-      <Seo title="Products" />
       <article className="grid gap-2 grid-flow-row ">
         <Link href="/products/asd">Invalid Link</Link>
         {

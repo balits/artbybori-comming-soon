@@ -1,13 +1,10 @@
 import { NextPage } from "next"
 import Logo from "../src/components/Logo"
-import Seo from "../src/Seo"
 
 const NotFound: NextPage = () => {
   //TODO add <Head /> to 404 page. (eg.: title= "Not Found - Art by Bori")
   return (
     <div className="relative w-screen bg-offwhite h-screen ">
-      <Seo title="Not found" />
-
       <header className="z-10 flex items-center justify-center  fixed top-0 h-header-base md:h-header-md xl:h-header-xl  w-full shadow-sm">
         <Logo />
       </header>

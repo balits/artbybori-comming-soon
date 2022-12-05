@@ -2,13 +2,14 @@ import { useContext } from "react"
 import { CartSidebarContext, NavSidebarContext } from "./sidebar"
 import Nav from "./Nav"
 import Logo from "./Logo"
+import { SlHandbag } from "react-icons/sl"
 
 const Header: React.FC = () => {
   const { openSidebar: openNavSidebar } = useContext(NavSidebarContext)
   const { openSidebar: openCartSidebar } = useContext(CartSidebarContext)
 
   return (
-    <header className="fixed top-0 flex items-center justify-between filter backdrop-blur-lg bg-offwhite/70 w-full max-w-[1500px] z-30 h-header-base md:h-header-md xl:h-header-xl lg:px-2 ">
+    <header className="fixed top-0 flex items-center justify-between bg-offwhite w-full max-w-[1500px] z-30 h-header-base md:h-header-md xl:h-header-xl lg:px-2 ">
       <button onClick={openNavSidebar} className="lg:hidden p-2 md:p-3 lg:p-4" aria-label="Open navigation panel from the left side.">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 md:h-6 md:w-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />

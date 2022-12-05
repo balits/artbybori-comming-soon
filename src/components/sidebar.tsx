@@ -1,7 +1,6 @@
 import React, { useState, createContext, useContext, useCallback } from "react"
 import { AnimatePresence, motion, useReducedMotion, Variants } from "framer-motion"
 import Nav from "./Nav"
-import CartSidebarPanel from "./cart/CartSidebarPanel"
 
 /**
 * These functions are optional, because you wouldnt need "openSidebar" from the context, if my Componenet only closes it.
@@ -98,7 +97,7 @@ const AnimatedSidebar: React.FC<SidebarProps> = ({
   return (
     <AnimatePresence>
       {isOpen &&
-        <motion.div className="fixed top-0 right-0 w-screen min-h-screen z-[49] "
+        <motion.div className="fixed top-0 right-0 w-screen min-h-screen z-[49] bg-black/30"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -107,7 +106,7 @@ const AnimatedSidebar: React.FC<SidebarProps> = ({
           }}
           onClick={closeSidebar}
         >
-          <motion.div className={`fixed h-full w-sidebar-phone md:w-sidebar-tablet xl:w-sidebar-desktop filter backdrop-blur-sm bg-gray-300/40 top-0 ${from === "right" ? "right-0" : "left-0"}  z-50 `}
+          <motion.div className={`fixed h-full w-sidebar-phone md:w-sidebar-tablet xl:w-sidebar-desktop bg-offwhite top-0 ${from === "right" ? "right-0" : "left-0"}  z-50 `}
             variants={sidebarVariants}
             initial="closed"
             animate="open"
@@ -169,7 +168,6 @@ export const CartSidebar: React.FC = () => {
         </div>
 
         <div className="row-span-10 w-full">
-          <CartSidebarPanel />
         </div>
 
         <button className="row-start-12 text-white bg-grey-dark rounded-md font-bold uppercase font-hind text-sm xl:text-lg tracking-wide h-fit py-4 w-[80%] mx-auto"

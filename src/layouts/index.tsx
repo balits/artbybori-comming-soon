@@ -1,6 +1,7 @@
 import { NavSidebar, CartSidebar, NavSidebarContext, CartSidebarContext } from "../components/sidebar"
 import Header from "../components/Header"
 import { useContext, useEffect } from "react"
+import Footer from "../components/Footer"
 
 type LayoutChildren = { children: React.ReactNode }
 
@@ -24,10 +25,11 @@ export const DefaultLayout: React.FC<LayoutChildren> = ({ children }) => {
       <NavSidebar />
       <CartSidebar />
 
-      <main className={`w-full max-w-[1400px] px-3  xl:p-0  mt-header-base md:mt-header-md xl:mt-header-xl`}>
+      <main className={`w-full max-w-[1400px] px-4  xl:p-0  mt-header-base md:mt-header-md xl:mt-header-xl`}>
         {/* tailwind doesnt allow a custom spacing utility for max-w-<utility>, but does for max-h-<utility> ?? */}
         {children}
       </main>
+      <Footer />
 
     </div>
   )

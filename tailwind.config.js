@@ -24,19 +24,25 @@ module.exports = {
       },
       spacing: {
         "header-base": "64px",
-        "header-md": "80px",
-        "header-xl": "96px",
+        "header-md": "72px",
+        "header-xl": "80px",
         "wrapper-max": "1400px",
 
         "sidebar-phone": "280px",
         "sidebar-tablet": "380px",
         "sidebar-desktop": "520px",
+
+        "footer": "600px",
       }
     },
     gridTemplateRows: {
+      '1': 'repeat(1, minmax(0,1fr))',
+      '2': 'repeat(2, minmax(0,1fr))',
       '12': 'repeat(12, minmax(0,1fr))'
     },
     gridRow: {
+      'span-1': 'span 1 / span 1',
+      'span-2': 'span 2 / span 2',
       'span-8': 'span 8 / span 8',
       'span-10': 'span 10 / span 10',
       'span-12': 'span 12 / span 12',
